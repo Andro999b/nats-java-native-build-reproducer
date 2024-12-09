@@ -120,13 +120,12 @@
             </activation>
             <properties>
                 <quarkus.native.enabled>true</quarkus.native.enabled>
-                <quarkus.native.container-build>true</quarkus.native.container-build>
+<!--                <quarkus.native.container-build>true</quarkus.native.container-build>-->
                 <quarkus.native.additional-build-args>
                     --initialize-at-run-time=io.nats.client.support.RandomUtils,
                     --initialize-at-run-time=java.security.SecureRandom,
-                    --no-server,
-                    --no-fallback,
-                    --initialize-at-build-time
+                    -J--add-exports=java.base/sun.security.x509=ALL-UNNAMED,
+                    -H:+PrintClassInitialization
                 </quarkus.native.additional-build-args>
             </properties>
         </profile>
